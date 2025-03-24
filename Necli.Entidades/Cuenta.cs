@@ -1,6 +1,6 @@
 ﻿namespace Necli.Entidades;
 
-public class Cuentas {
+public class Cuenta {
 
     public int Id;
 
