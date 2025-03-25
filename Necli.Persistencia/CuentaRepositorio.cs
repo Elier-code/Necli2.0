@@ -57,7 +57,7 @@ namespace Necli.Persistencia
                             FechaCreacion = DateTime.Parse(lector["FechaCreacion"].ToString()),
                             Id = Convert.ToInt32(lector["Id"].ToString()),
                             Nombres = lector["Nombres"].ToString(),
-                            NumeroTelefono = Convert.ToInt32(lector["NumeroTelefono"].ToString()),
+                            NumeroTelefono = lector["NumeroTelefono"].ToString(),
                             Saldo = Convert.ToSingle(lector["Saldo"].ToString())
 
                         };
@@ -71,7 +71,7 @@ namespace Necli.Persistencia
                 return cuentas;
         }
 
-        public Cuenta ConsultarCuenta(int telefono)
+        public Cuenta ConsultarCuenta(string telefono)
         {
             using (var conexion = new SqlConnection(_cadena_conexion))
             {
@@ -93,7 +93,7 @@ namespace Necli.Persistencia
                             FechaCreacion = DateTime.Parse(lector["FechaCreacion"].ToString()),
                             Id = Convert.ToInt32(lector["Id"].ToString()),
                             Nombres = lector["Nombres"].ToString(),
-                            NumeroTelefono = Convert.ToInt32(lector["NumeroTelefono"].ToString()),
+                            NumeroTelefono = lector["NumeroTelefono"].ToString(),
                             Saldo = Convert.ToSingle(lector["Saldo"].ToString())
 
                         };
