@@ -10,4 +10,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Necli.Entidades\Necli.Entidades.csproj" />
+    <ProjectReference Include="..\Necli.LogicaNegicio\Necli.LogicaNegicio.csproj" />
+    <ProjectReference Include="..\Necli.Persistencia\Necli.Persistencia.csproj" />
+  </ItemGroup>
+
 </Project>

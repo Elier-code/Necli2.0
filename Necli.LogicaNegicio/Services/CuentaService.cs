@@ -4,7 +4,7 @@ using Necli.Persistencia;
 
 namespace Necli.LogicaNegicio.Services;
 
-public class CuentaServices
+public class CuentaService
 {
 
     private readonly CuentaRepositorio _cuentaRepositorio = new CuentaRepositorio();
@@ -39,12 +39,12 @@ public class CuentaServices
 
     }
 
-    public ConsultaUsuarioDto ConsultarCuenta(int Telefono)
+    public ConsultaUsuarioDto ConsultarUsuario(int Telefono)
     {
 
-        var usuario = _cuentaRepositorio.ConsultarCuenta(Telefono);
+        var cuenta = _cuentaRepositorio.ConsultarCuenta(Telefono);
 
-        return new ConsultaUsuarioDto(usuario.Id, usuario.Nombres, usuario.Apellidos, usuario.Email, usuario.NumeroTelefono);
+        return new ConsultaUsuarioDto(cuenta.Id, cuenta.Nombres, cuenta.Apellidos, cuenta.Email, cuenta.NumeroTelefono);
 
     }
 
