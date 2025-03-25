@@ -30,22 +30,29 @@ public class CuentaService
 
     }
 
-    public ConsultaCuentaDto ConsultarCuenta(int Telefono)
+    public ConsultaCuentaDto ConsultarCuenta(string Telefono)
     {
 
         var cuenta = _cuentaRepositorio.ConsultarCuenta(Telefono);
 
-        return new ConsultaCuentaDto(cuenta.Id, cuenta.Contraseña, cuenta.Nombres, cuenta.Apellidos, cuenta.Email, cuenta.NumeroTelefono, cuenta.Saldo, cuenta.FechaCreacion);
+        return new ConsultaCuentaDto(cuenta.Id, cuenta.Nombres, cuenta.Apellidos, cuenta.Email, cuenta.NumeroTelefono, cuenta.Saldo, cuenta.FechaCreacion);
 
     }
 
-    public ConsultaUsuarioDto ConsultarUsuario(int Telefono)
+    public ConsultaUsuarioDto ConsultarUsuario(string Telefono)
     {
 
         var cuenta = _cuentaRepositorio.ConsultarCuenta(Telefono);
 
         return new ConsultaUsuarioDto(cuenta.Id, cuenta.Nombres, cuenta.Apellidos, cuenta.Email, cuenta.NumeroTelefono);
 
+    }
+
+
+    public List<ConsultaCuentaDto> ListarVehiculos()
+    {
+
+        return _cuentaRepositorio.ListarCuentas().Select(x => new ConsultaCuentaDto(x.Id, x.Nombres, x.Apellidos, x.Email, x.NumeroTelefono, x.Saldo, x.FechaCreacion)).ToList();
     }
 
 }

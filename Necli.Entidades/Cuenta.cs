@@ -12,7 +12,7 @@ public class Cuenta {
 
     public string Email;
 
-    public int NumeroTelefono;
+    public string NumeroTelefono;
 
     public float Saldo;
 

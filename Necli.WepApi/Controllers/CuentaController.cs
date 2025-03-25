@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Necli.Entidades;
 using Necli.LogicaNegicio.Dtos;
 using Necli.LogicaNegicio.Services;
 using Necli.Persistencia;
@@ -9,7 +10,7 @@ namespace Necli.WepApi.Controllers;
 public class CuentaController : Controller
 {
 
-    private readonly CuentaRepositorio _cuentaRepositorio;
+    private readonly CuentaRepositorio _cuentaRepositorio= new();
     private readonly CuentaService _cuentaService = new();
 
     [HttpPost]
@@ -20,11 +21,11 @@ public class CuentaController : Controller
 
     }
 
-    [HttpGet]
-    public ActionResult<ConsultaCuentaDto> ConsultarCuenta(int Telefono)
+    [HttpGet("{telefono}")]
+    public ActionResult<ConsultaCuentaDto> ConsultarCuenta(string telefono)
     {
-
-        var cuenta = _cuentaService.ConsultarCuenta(Telefono);
+        
+        var cuenta = _cuentaService.ConsultarCuenta(telefono);
 
         if (cuenta == null)
         {
@@ -49,5 +50,13 @@ public class CuentaController : Controller
         }
 
         return NoContent();
+    }
+
+    [HttpGet]
+
+    public ActionResult<List<Cuenta>> ListarCuentas()
+    {
+        
+        return Ok(_cuentaService.ListarVehiculos());
     }
 }

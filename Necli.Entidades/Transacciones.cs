@@ -1,14 +1,14 @@
 ﻿namespace Necli.Entidades;
 
-class Transacciones {
+public class Transacciones {
 
     public int Numero;
 
     public DateTime Fecha;
 
-    public int NumeroCuentaOrigen;
+    public string NumeroCuentaOrigen;
 
-    public int NumeroCuentaDestino;
+    public string NumeroCuentaDestino;
 
     public float Monto;
 
