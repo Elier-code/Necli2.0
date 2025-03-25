@@ -39,7 +39,7 @@ public class CuentaServices
 
     }
 
-    public ConsultaUsuarioDto ConsultarCuenta(int Telefono)
+    public ConsultaUsuarioDto ConsultarUsuario(int Telefono)
     {
 
         var usuario = _cuentaRepositorio.ConsultarCuenta(Telefono);
