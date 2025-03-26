@@ -39,20 +39,41 @@ public class CuentaService
 
     }
 
-    public ConsultaUsuarioDto ConsultarUsuario(string Telefono)
+    public ConsultaUsuarioDto ConsultarUsuario(int id)
     {
 
-        var cuenta = _cuentaRepositorio.ConsultarCuenta(Telefono);
+        var cuenta = _cuentaRepositorio.ConsultarUsuario(id);
+        if (cuenta == null)
+        {
+            return null; 
+        }
 
         return new ConsultaUsuarioDto(cuenta.Id, cuenta.Nombres, cuenta.Apellidos, cuenta.Email, cuenta.NumeroTelefono);
 
     }
 
 
-    public List<ConsultaCuentaDto> ListarVehiculos()
+    public bool ActualizarCuenta(ActualizarCuentaDto cuentaDto)
     {
+        var cuentaExistente = _cuentaRepositorio.ConsultarUsuario(cuentaDto.Id);
 
-        return _cuentaRepositorio.ListarCuentas().Select(x => new ConsultaCuentaDto(x.Id, x.Nombres, x.Apellidos, x.Email, x.NumeroTelefono, x.Saldo, x.FechaCreacion)).ToList();
+        if (cuentaExistente != null)
+        {
+
+            cuentaExistente.Nombres = cuentaDto.Nombres;
+            cuentaExistente.Apellidos = cuentaDto.Apellidos;
+            cuentaExistente.Email = cuentaDto.Email;
+            cuentaExistente.NumeroTelefono = cuentaDto.NumeroTelefono;
+            cuentaExistente.Contraseña = cuentaDto.Contraseña;
+
+            return _cuentaRepositorio.ActualizarCuenta(cuentaExistente);
+        }
+
+        return false;
+
+
     }
+
+
 
 }

@@ -108,6 +108,45 @@ namespace Necli.Persistencia
         }
 
 
+
+
+        public Cuenta ConsultarUsuario(int id)
+        {
+            using (var conexion = new SqlConnection(_cadena_conexion))
+            {
+                sql = "SELECT * FROM Cuentas WHERE Id =@Id";
+
+                using (var comando = new SqlCommand(sql, conexion))
+                {
+
+                    comando.Parameters.AddWithValue("@Id", id);
+                    conexion.Open();
+                    var lector = comando.ExecuteReader();
+                    while (lector.Read())
+                    {
+                        var cuenta = new Cuenta
+                        {
+                            Apellidos = lector["Apellidos"].ToString(),
+                            Contraseña = lector["Contraseña"].ToString(),
+                            Email = lector["Email"].ToString(),
+                            FechaCreacion = DateTime.Parse(lector["FechaCreacion"].ToString()),
+                            Id = Convert.ToInt32(lector["Id"].ToString()),
+                            Nombres = lector["Nombres"].ToString(),
+                            NumeroTelefono = lector["NumeroTelefono"].ToString(),
+                            Saldo = Convert.ToSingle(lector["Saldo"].ToString())
+
+                        };
+                        return cuenta;
+                    }
+                }
+            }
+
+
+
+            return null;
+        }
+
+
         public bool ActualizarCuenta(Cuenta cuenta)
         {
             using (var conexion = new SqlConnection(_cadena_conexion))
