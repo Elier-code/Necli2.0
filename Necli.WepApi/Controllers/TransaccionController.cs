@@ -13,10 +13,17 @@ namespace Necli.WepApi.Controllers
         private readonly TransaccionService _transaccionService = new();
 
         [HttpPost]
-        public ActionResult<bool> registrarTransaccion(RegistroTransaccionDto transaccion)
+        public ActionResult<RespuestaTransaccionDto> registrarTransaccion(RegistroTransaccionDto transaccion)
         {
+            var resultado = _transaccionService.RegistrarTransaccion(transaccion);
 
-            return Ok(_transaccionService.RegistrarTransaccion(transaccion));
+            var respuesta = new RespuestaTransaccionDto
+            {
+                Exito = resultado.Item1, // Suponiendo que devuelve (bool, string)
+                Mensaje = resultado.Item2
+            };
+
+            return Ok(respuesta);
 
         }
 

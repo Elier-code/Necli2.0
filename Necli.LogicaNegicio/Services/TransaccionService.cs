@@ -8,6 +8,7 @@ namespace Necli.LogicaNegicio.Services
     {
         private readonly TransaccionesRepositorio _transaccionRepositorio = new TransaccionesRepositorio();
         private readonly CuentaRepositorio _cuentaRepositorio = new CuentaRepositorio();
+        
 
         public (bool, string) RegistrarTransaccion(RegistroTransaccionDto transaccionDto)
         {
@@ -38,6 +39,10 @@ namespace Necli.LogicaNegicio.Services
                 }
 
             }
+            else
+            {
+                return (false, "La/s cuanta/s no existen");
+            }
 
             return (false, "No se puedo hacer la Transaccion");
         }
@@ -50,6 +55,6 @@ namespace Necli.LogicaNegicio.Services
 
 
 
-
     }
+
 }
